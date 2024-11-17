@@ -1,0 +1,34 @@
+# WebUI Admin definition
+frontendlogin: admin
+frontendpassword: admin
+
+# DB connection
+dbconnectiontype: tcp
+dbtcphostname: db
+dbtcpport: 3306
+dbtcpname: cells
+dbtcpuser: cells
+dbtcppassword: cells
+
+# Collabora/LibreOffice Configuration
+libreofficehost: collabora.convay.com
+libreofficeport: 9980
+libreofficessl: false
+libreofficeversion: 21
+libreofficeskipverify: true
+libreofficepluginenabled: true
+
+# External URLs and WOPI Configuration
+external: https://pydio.convay.com
+wopiserver: https://collabora.convay.com
+wopipublic: https://pydio.convay.com
+wopiinsecure: true
+
+# Server Configuration
+bind: :8080
+working_dir: /var/cells
+caddypath: /var/cells/certs
+
+# Additional Settings
+tls: false  # Since we're using reverse proxy
+log_level: production

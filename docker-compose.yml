@@ -1,0 +1,34 @@
+services:
+  cells:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        version: latest
+    ports:
+      - "8080:8080"
+    environment:
+      - CELLS_INSTALL_YAML=/var/cells/config/install.yml
+    volumes:
+      - dc-cells_working:/var/cells
+      - dc-cells_data:/var/cells/data
+      - ./install-conf.yml:/var/cells/config/install.yml:ro
+    restart: unless-stopped
+    depends_on:
+      - db
+
+  db:
+    image: mariadb:10.6
+    environment:
+      - MYSQL_ROOT_PASSWORD=cells
+      - MYSQL_DATABASE=cells
+      - MYSQL_USER=cells
+      - MYSQL_PASSWORD=cells
+    volumes:
+      - dc-mysql_data:/var/lib/mysql
+    restart: unless-stopped
+
+volumes:
+  dc-cells_working:
+  dc-cells_data:
+  dc-mysql_data:
